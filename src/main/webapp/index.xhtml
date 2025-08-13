@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestión de Productos</title>
+</h:head>
+<h:body>
+    <h2>Registrar Producto</h2>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Nombre:" />
+            <h:inputText value="#{productoBean.producto.nombre}" required="true" />
+            <h:outputLabel value="Precio:" />
+            <h:inputText value="#{productoBean.producto.precio}" required="true" />
+            <h:outputLabel value="Stock:" />
+            <h:inputText value="#{productoBean.producto.stock}" required="true" />
+        </h:panelGrid>
+        <h:commandButton value="Registrar" action="#{productoBean.registrar}" />
+        <h:messages />
+    </h:form>
+
+    <h2>Lista de Productos</h2>
+    <h:form>
+        <h:dataTable value="#{productoBean.productos}" var="p" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{p.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                #{p.nombre}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Precio</f:facet>
+                #{p.precio}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Stock</f:facet>
+                #{p.stock}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Acción</f:facet>
+                <h:commandButton value="Eliminar" action="#{productoBean.eliminar(p.id)}" />
+            </h:column>
+        </h:dataTable>
+        <h:messages />
+    </h:form>
+</h:body>
+
+</html>
